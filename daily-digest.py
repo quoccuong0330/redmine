@@ -52,7 +52,7 @@ def main():
 
         html = render_digest_email(time_entries, due_today, due_tomorrow, redmine_url)
         today_str = datetime.now().strftime('%a %d %b %Y')
-        subject = f"\U0001f4cb Redmine Digest — {today_str}"
+        subject = f"📋 Redmine Digest — {today_str}"
 
         if dry_run:
             log.info("DRY RUN — printing HTML to stdout, no email sent")

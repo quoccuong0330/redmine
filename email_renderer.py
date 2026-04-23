@@ -122,7 +122,7 @@ def render_digest_email(
   <!-- Header -->
   <div style="background:{CLR["header_bg"]};padding:28px 32px 24px;color:#fff;">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;">
-      <h1 style="margin:0;font-size:20px;font-weight:700;">\U0001f4cb Daily Work Digest</h1>
+      <h1 style="margin:0;font-size:20px;font-weight:700;">📋 Daily Work Digest</h1>
       <span style="background:rgba(255,255,255,.15);border-radius:20px;padding:4px 12px;
                    font-size:12px;font-weight:600;">{day_name}</span>
     </div>
@@ -163,16 +163,16 @@ def render_digest_email(
   <div style="padding:24px 32px 0;">
     {_section_title("❌", "Due today — still open")}
     {_render_issues(due_today, "Due today", CLR["red"], CLR["red_bg"],
-                    "⚠️", "All clear — nothing overdue today \U0001f389")}
+                    "⚠️", "All clear — nothing overdue today 🎉")}
   </div>
 
   <hr style="border:none;border-top:1px solid #e9ecef;margin:24px 32px 0;"/>
 
   <!-- Section 3: Due tomorrow -->
   <div style="padding:24px 32px 24px;">
-    {_section_title("\U0001f4c5", "Due tomorrow")}
+    {_section_title("📅", "Due tomorrow")}
     {_render_issues(due_tomorrow, "Due tomorrow", CLR["blue"], CLR["blue_bg"],
-                    "\U0001f535", "Nothing due tomorrow")}
+                    "🔵", "Nothing due tomorrow")}
   </div>
 
   <!-- Footer -->
