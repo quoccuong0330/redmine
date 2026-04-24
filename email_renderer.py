@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import date, datetime
 from html import escape
 
 
@@ -182,6 +182,42 @@ def render_digest_email(
       Redmine Digest &middot; <a href="{redmine_url}" style="color:#adb5bd;">{redmine_url}</a>
     </div>
     <div style="font-size:11px;color:#ced4da;">⚠️ Log time before 17:00 for accurate report</div>
+  </div>
+
+</div>
+</body>
+</html>'''
+
+
+def render_brief_email(time_entries: list, redmine_url: str) -> str:
+    now = datetime.now()
+    total_hours = sum(e.get('hours', 0) for e in time_entries)
+    time_str = now.strftime('%H:%M')
+    date_str = now.strftime('%a %d %b %Y')
+
+    return f'''<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"/></head>
+<body style="margin:0;padding:20px;background:#f0f2f5;font-family:Arial,sans-serif;">
+<div style="max-width:640px;margin:0 auto;background:#fff;border-radius:8px;
+            overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.1);">
+
+  <!-- Header -->
+  <div style="background:{CLR["header_bg"]};padding:20px 32px;color:#fff;
+              display:flex;align-items:center;justify-content:space-between;">
+    <div>
+      <div style="font-size:16px;font-weight:700;margin-bottom:2px;">⏱ Progress Update</div>
+      <div style="font-size:12px;opacity:.65;">{date_str}</div>
+    </div>
+    <div style="text-align:right;">
+      <div style="font-size:28px;font-weight:700;line-height:1;color:{CLR["green"]};">{total_hours:.1f}h</div>
+      <div style="font-size:11px;opacity:.65;margin-top:2px;">logged as of {time_str}</div>
+    </div>
+  </div>
+
+  <!-- Time entries -->
+  <div style="padding:20px 32px;">
+    {_render_time_entries(time_entries, redmine_url)}
   </div>
 
 </div>
